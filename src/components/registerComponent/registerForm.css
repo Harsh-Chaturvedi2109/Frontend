@@ -1,0 +1,169 @@
+/* General body styling */
+.registerForm-body {
+    background-color: #0e0e0e;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), transparent),
+                      radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                      radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 200px 200px, 40px 40px, 40px 40px;
+    background-position: 0 0, 0 0, 20px 20px;
+    animation: backgroundMove 10s linear infinite;
+  }
+  
+  @keyframes backgroundMove {
+    0% {
+      background-position: 0 0, 0 0, 20px 20px;
+    }
+    100% {
+      background-position: 200px 200px, 40px 40px, 0 0;
+    }
+  }
+  
+  /* General form styling */
+  .registerForm {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #333, #222);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .registerForm::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-color: rgba(255, 255, 255, 0.05);
+    animation: move 15s ease infinite;
+    z-index: -1;
+  }
+  
+  @keyframes move {
+    0% {
+      transform: translate(-25%, -25%) rotate(0deg);
+    }
+    100% {
+      transform: translate(25%, 25%) rotate(180deg);
+    }
+  }
+  
+  .registerForm::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.1), transparent 70%);
+    z-index: -1;
+  }
+  
+  .registerForm h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+  
+  .registerForm h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background-color: #8e44ad;
+    box-shadow: 0 0 10px rgba(142, 68, 173, 0.5);
+  }
+  
+  /* ... (rest of the CSS remains the same) */
+  /* Input field styling */
+  .registerForm input,
+  .registerForm select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #444;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .registerForm input:focus,
+  .registerForm select:focus {
+    outline: none;
+    background-color: #555;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Label styling */
+  .registerForm label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #ccc;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Button styling */
+  .registerForm button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #2c2c54; /* Unique dark color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .registerForm button:hover {
+    background-color: #3c3c6c; /* Slightly lighter shade on hover */
+    color: #ffff00; /* Change the color to yellow on hover */
+  }
+  
+  .registerForm button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+  
+  .registerForm button:hover::before {
+    width: 200%;
+    height: 200%;
+  }
+  
+  /* Input field animations */
+  .registerForm input,
+  .registerForm select {
+    animation: inputGlow 2s infinite alternate;
+  }
+  
+  @keyframes inputGlow {
+    0% {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+  }

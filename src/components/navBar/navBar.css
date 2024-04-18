@@ -1,0 +1,84 @@
+/* Drawer Container */
+.ant-drawer-content {
+    background-color: #fff;
+    border-right: 1px solid #e8e8e8;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Drawer Header */
+  .ant-drawer-header {
+    background-color: #1890ff;
+    color: #fff;
+    padding: 16px 24px;
+    border-bottom: none;
+  }
+  
+  .ant-drawer-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  /* Drawer Body */
+  .ant-drawer-body {
+    padding: 24px;
+    background-color: beige;
+  }
+  
+  .ant-drawer-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .ant-drawer-body li {
+    margin-bottom: 16px;
+  }
+  
+  .ant-drawer-body .nav-Link{
+    color: blue;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .ant-drawer-body .nav-Link:hover {
+    color: red;
+  }
+  
+  /* Drawer Close Button */
+  .ant-drawer-close {
+    color: #fff;
+    font-size: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  .ant-drawer-close:hover {
+    color: #ccc;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .ant-drawer-content {
+      width: 80% !important;
+    }
+  }
+
+  /* Drawer Button */
+.drawer-button {
+    background-color: #e8e8e8;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .drawer-button:hover {
+    background-color: #1890ff ;
+  }
+  
+  .drawer-button img {
+    vertical-align: middle;
+    margin-right: 8px ;
+  }

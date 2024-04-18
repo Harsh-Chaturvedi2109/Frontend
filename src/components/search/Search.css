@@ -1,0 +1,89 @@
+.search-body {
+    background-color: #f8f8f8;
+}
+.search{
+    /* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  
+  
+  /* Search Form Styles */
+  .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .search-form select,
+  .search-form input[type="search"],
+  .search-form button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .search-form select {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .search-form input[type="search"] {
+    width: 300px;
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .search-form button {
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-form button:hover {
+    background-color: #555;
+  }
+  
+  /* Table Styles */
+  .table-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Error Message Styles */
+  .error-message {
+    color: #ff0000;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
