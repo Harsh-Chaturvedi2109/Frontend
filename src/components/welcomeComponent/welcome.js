@@ -60,7 +60,7 @@ function Welcome() {
   async function handleSubmit(e) {
     e.preventDefault();
     const email = selectedUser.email;
-    const URL = `http://localhost:8080/user/${email}`;
+    const URL = `https://backend-6tqr.onrender.com/user/${email}`;
     const response = await fetch(URL, {
       method: "PATCH",
       body: JSON.stringify(selectedUser),
@@ -95,7 +95,7 @@ function Welcome() {
     close();
     setIsLoading(true);
     const response = await fetch(
-      `http://localhost:8080/user/uploadProfilePic/${email}`,
+      `https://backend-6tqr.onrender.com/user/uploadProfilePic/${email}`,
       {
         method: "POST",
         body: JSON.stringify({ image }),
@@ -130,7 +130,7 @@ function Welcome() {
   }
   async function handleDelete(close) {
     console.log(usersToDelete);
-    const URL = "http://localhost:8080/user/deleteSelectedUser";
+    const URL = "https://backend-6tqr.onrender.com/user/deleteSelectedUser";
     const response = await fetch(URL, {
       method: "DELETE",
       body: JSON.stringify(usersToDelete),

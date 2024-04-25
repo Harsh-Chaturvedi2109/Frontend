@@ -44,7 +44,7 @@ function ExamRegistration(){
             }
             else{
                 setIsLoading(true);
-                const res = await  fetch("http://localhost:8080/user/registerForExam",{
+                const res = await  fetch("https://backend-6tqr.onrender.com/user/registerForExam",{
                     method:"POST",
                     headers:{
                         Authorization: "Bearer" + " " + localStorage.getItem("Authorization"),

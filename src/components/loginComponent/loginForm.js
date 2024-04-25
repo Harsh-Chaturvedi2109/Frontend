@@ -22,7 +22,7 @@ const navigate = useNavigate();
     async function handleSubmit(e){
         e.preventDefault();
         console.log(loginForm);
-        const response = await fetch("http://localhost:8080/login",{
+        const response = await fetch("https://backend-6tqr.onrender.com/login",{
             'method':'POST',
             body:JSON.stringify(loginForm),
             headers:{

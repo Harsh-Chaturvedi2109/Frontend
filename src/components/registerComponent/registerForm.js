@@ -34,7 +34,7 @@ function Register() {
   
   async function handleSubmit(e) {
     e.preventDefault();
-    const URL = "http://localhost:8080/user";
+    const URL = "https://backend-6tqr.onrender.com/user";
     const response1 = await fetch(URL, {
       method: "POST",
       body: JSON.stringify(form),

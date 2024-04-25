@@ -18,7 +18,7 @@ function Academic(){
                 setShow(false);
                 return;
             }
-            const res = await fetch(`http://localhost:8080/user/academicDetails`,{
+            const res = await fetch(`https://backend-6tqr.onrender.com/user/academicDetails`,{
                 method:"GET",
                 headers:{
                     Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
@@ -53,7 +53,7 @@ function Academic(){
     async function handleFormSubmit(e){
         try{
                 e.preventDefault();
-            const res = await fetch("http://localhost:8080/user/addAcademicDetails",{
+            const res = await fetch("https://backend-6tqr.onrender.com/user/addAcademicDetails",{
                 method:"POST",
                 body: JSON.stringify(formData),
                 headers:{

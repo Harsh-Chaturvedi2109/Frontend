@@ -29,7 +29,7 @@ function Search() {
       setErrorMessage("Please Enter a text to search");
       return;
     }
-    const URL = `http://localhost:8080/user/search?key=${searchKey}&value=${searchText}`;
+    const URL = `https://backend-6tqr.onrender.com/user/search?key=${searchKey}&value=${searchText}`;
     const res = await fetch(URL,{
       method:"GET",
       headers:{
