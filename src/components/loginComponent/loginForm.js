@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import  "./loginForm.css";
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
+import { Spin } from "antd";
 
 function Login() {
 
@@ -12,6 +13,7 @@ function Login() {
 const [loginForm, setLoginForm] = useState(initialState);
 const[error,setError] = useState("");
 const navigate = useNavigate();
+const [loading,setLoading] = useState(false);
 
   useEffect(() => {
     document.body.classList.add("loginForm-body");
@@ -21,6 +23,7 @@ const navigate = useNavigate();
 }, []);
     async function handleSubmit(e){
         e.preventDefault();
+        setLoading(true);
         console.log(loginForm);
         const response = await fetch("http://localhost:8080/login",{
             'method':'POST',
@@ -35,6 +38,7 @@ const navigate = useNavigate();
         if(response.ok){
             localStorage.setItem("Authorization",data.token);
             localStorage.setItem("Role",data.role);
+            setLoading(false);
             navigate('/Home');
         }
         else{
@@ -56,6 +60,9 @@ const navigate = useNavigate();
         <div className="shape" />
         <div className="shape" />
       </div>
+      {loading && (<div>
+      <Spin size="large" fullscreen = {true}/>
+      </div>)}
       <form onSubmit={handleSubmit}>
         <h3>Login Here</h3>
         <label htmlFor="email">Email</label>
