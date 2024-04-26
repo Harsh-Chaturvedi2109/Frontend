@@ -43,11 +43,7 @@ function Welcome() {
   }
 
   //For logout button
-  function handleClick(e) {
-    localStorage.removeItem("Authorization");
-    localStorage.removeItem("Role");
-    navigate("/login");
-  }
+  
 
   // For handling the changes while editing
   function handleChange(e) {
@@ -217,11 +213,7 @@ function Welcome() {
         
         <p>Welcome, You are logged in {isAdmin && <span> as Admin</span>}</p>
         <br />
-        <div className="logout-container">
-          <button onClick={handleClick} className="logout-btn">
-            Logout
-          </button>
-        </div>
+        
 
         <h2>User Details</h2>
         <div>

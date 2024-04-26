@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./navBar.css";
 import { getUser } from "../../services/api";
-
+import { useNavigate } from "react-router-dom";
 function Navbar() {
   const isLoggedIn = !!localStorage.getItem("Authorization");
   const isAdmin = isLoggedIn && localStorage.getItem("Role").toLowerCase() === "admin";
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [details,setDetails] = useState([])
-
+  const navigate = useNavigate();
   async function fetchData(){
     try{
         const data = await getUser();
@@ -27,6 +27,11 @@ function Navbar() {
         console.log("Error",err);
     }
     
+}
+function handleClick(e) {
+  localStorage.removeItem("Authorization");
+  localStorage.removeItem("Role");
+  navigate("/login");
 }
   useEffect(() => {
     const handleResize = () => {
@@ -77,6 +82,12 @@ function Navbar() {
                     </li>
                 )}
               </ul>
+
+              <div className="logout-container">
+                <button onClick={handleClick} className="logout-btn">
+                  Logout
+                </button>
+              </div>
             </div>
           </Drawer>
         </>
@@ -135,6 +146,12 @@ function Navbar() {
             </Menu.Item>
           )}
         </Menu>
+
+        <div className="logout-container">
+          <button onClick={handleClick} className="logout-btn">
+            Logout
+          </button>
+        </div>
         </div>
       </div>
       )}
