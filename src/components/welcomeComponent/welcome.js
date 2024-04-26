@@ -213,7 +213,7 @@ function Welcome() {
   return (
     <>
       <Navbar></Navbar>
-      {localStorage.getItem("Role") === "admin" ? (<div ref={pdfComponent} className="welcome-component">
+      {localStorage.getItem("Role").toLowerCase() === "admin" ? (<div ref={pdfComponent} className="welcome-component">        
         
         <p>Welcome, You are logged in {isAdmin && <span> as Admin</span>}</p>
         <br />
