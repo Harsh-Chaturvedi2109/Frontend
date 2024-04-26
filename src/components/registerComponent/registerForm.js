@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./registerForm.css";
-
+import { Spin } from "antd";
 function Register() {
   const initialState = {
     firstName: "",
@@ -22,6 +22,7 @@ function Register() {
   const [form, setForm] = useState(initialState);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const[isLoading,setIsLoading] = useState(false);
   
   function handleChange(e) {
     setForm({
@@ -34,7 +35,8 @@ function Register() {
   
   async function handleSubmit(e) {
     e.preventDefault();
-    const URL = "http://localhost:8080/user";
+    setIsLoading(true);
+    const URL = "https://backend-6tqr.onrender.com/user";
     const response1 = await fetch(URL, {
       method: "POST",
       body: JSON.stringify(form),
@@ -50,6 +52,7 @@ function Register() {
     } else {
       setErrorMessage(data.message || "An error occurred during registration.");
     }
+    setIsLoading(false);
     setForm(initialState);
 
   }
@@ -58,8 +61,8 @@ function Register() {
      
       <div className="registerForm">
         <h2>Register</h2>
+        {isLoading && <Spin size="large" fullscreen={true}/>}
         <form onSubmit={handleSubmit} >
-          
           <label htmlFor="firstName">First Name</label>
           <input
             type="text"

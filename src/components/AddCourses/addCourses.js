@@ -23,7 +23,7 @@ function AddCourses(){
         e.preventDefault();
         try{
             setIsLoading(true);
-            const res = await fetch("http://localhost:8080/course/addCourse",{
+            const res = await fetch("https://backend-6tqr.onrender.com/course/addCourse",{
                 method:"POST",
                 body:JSON.stringify(formData),
                 headers:{

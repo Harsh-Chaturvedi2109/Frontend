@@ -26,7 +26,7 @@ function SelectCourse() {
       }
     async function getAllCourses() {
         try {
-            const res = await fetch("http://localhost:8080/course/getAllCourses", {
+            const res = await fetch("https://backend-6tqr.onrender.com/course/getAllCourses", {
                 method: "GET",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("Authorization")
@@ -46,7 +46,7 @@ function SelectCourse() {
             return
         }
         try{
-                const res = await fetch("http://localhost:8080/course/enrollCourse", {
+                const res = await fetch("https://backend-6tqr.onrender.com/course/enrollCourse", {
                 method: "PATCH",
                 body:JSON.stringify({courseCode:selectedCourses}),
                 headers:{
@@ -74,7 +74,7 @@ function SelectCourse() {
 
     async function getEnrolledCourses(){
         try{
-            const res = await fetch("http://localhost:8080/course/getEnrolledCourses", {
+            const res = await fetch("https://backend-6tqr.onrender.com/course/getEnrolledCourses", {
                 method: "GET",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("Authorization")

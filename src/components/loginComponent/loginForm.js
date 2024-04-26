@@ -25,7 +25,7 @@ const [loading,setLoading] = useState(false);
         e.preventDefault();
         setLoading(true);
         console.log(loginForm);
-        const response = await fetch("http://localhost:8080/login",{
+        const response = await fetch("https://backend-6tqr.onrender.com/login",{
             'method':'POST',
             body:JSON.stringify(loginForm),
             headers:{

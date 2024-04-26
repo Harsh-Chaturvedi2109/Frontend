@@ -1,7 +1,7 @@
 export async function getUser() {
     console.log("Get user called")
     try{
-        const response = await fetch("http://localhost:8080/user", {
+        const response = await fetch("https://backend-6tqr.onrender.com/user", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
