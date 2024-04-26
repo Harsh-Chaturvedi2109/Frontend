@@ -45,7 +45,6 @@ function Register() {
       },
     });
     const data = await response1.json();
-    console.log(data);
     if (response1.ok) {
       setSuccessMessage("Registration successful!");
       setForm(initialState);

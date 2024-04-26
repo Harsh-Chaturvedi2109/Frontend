@@ -24,31 +24,38 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    console.log(loginForm);
-    const response = await fetch("https://backend-6tqr.onrender.com/login", {
-      method: "POST",
-      body: JSON.stringify(loginForm),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      const response = await fetch("https://backend-6tqr.onrender.com/login", {
+        method: "POST",
+        body: JSON.stringify(loginForm),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    if (response.ok) {
-      const token = response.headers.get("Authorization");
-      const data = await response.json();
-      localStorage.setItem("Authorization", token);
-      localStorage.setItem("Role", data.role);
-      setLoading(false);
-      navigate("/Home");
-    } else {
-      const data = await response.json();
-      setError(data.message);
-      console.log("Error", data.err);
+      if (response.ok) {
+        const data = await response.json();
+        const authorizationHeader = response.headers.get("Authorization");
+        if (authorizationHeader) {
+          const token = authorizationHeader.split(" ")[1];
+          localStorage.setItem("Authorization", token);
+          localStorage.setItem("Role", data.role);
+          setLoading(false);
+          navigate("/Home");
+        } else {
+          console.error("Authorization header not found in the response");
+        }
+      } else {
+        const data = await response.json();
+        setError(data.message);
+        console.log("Error", data.err);
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   }
 
   function handleChange(e) {
-    console.log(e.target.name, e.target.value);
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
     setError("");
   }
