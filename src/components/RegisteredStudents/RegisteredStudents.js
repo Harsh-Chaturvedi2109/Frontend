@@ -2,15 +2,19 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../navBar/navBar";  
 import { getUser } from "../../services/api";
+import { Spin} from "antd";
 function RegisteredStudents() {
     const [details , setDetails ]= useState([]);
+    const[isLoading,setIsLoading] = useState(false);
     const navigate = useNavigate();
     
 
     async function fetchData(){
       try{
+        setIsLoading(true);
         const data = await getUser();
         setDetails(data);
+        setIsLoading(false);
       }
       catch(err){
         if(err.name==="TypeError"){
@@ -26,7 +30,8 @@ function RegisteredStudents() {
     return (
         <div>
             <Navbar></Navbar>
-            <table border="1" style={{borderCollapse:"collapse"}}>
+
+            {isLoading ? <Spin size="large" fullscreen={true}/> :<table border="1" style={{borderCollapse:"collapse"}}>
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -47,7 +52,7 @@ function RegisteredStudents() {
                         })
                     }
                 </tbody>
-            </table>
+            </table>}
             
         </div>
     );

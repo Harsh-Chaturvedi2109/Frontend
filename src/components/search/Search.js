@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../navBar/navBar";
 import "./Search.css";
+import { Spin } from "antd";
 function Search() {
 
 
@@ -14,6 +15,7 @@ function Search() {
     const[searchedDetails,setSearchedDetails] = useState([]);
     const[errorMessage,setErrorMessage] = useState("")
     const[searchText, setSearchText] = useState("")
+    const[isLoading,setIsLoading] = useState(false);
     const[isSearched,setIsSearched] = useState(false);
     const[searchKey, setSearchKey] = useState("");
 
@@ -25,11 +27,12 @@ function Search() {
   }
   async function handleSearch(e){
     e.preventDefault();
+    setIsLoading(true);
     if(searchText.trim()==='' && searchKey.trim()===''){
       setErrorMessage("Please Enter a text to search");
       return;
     }
-    const URL = `https://backend-6tqr.onrender.com/user/search?key=${searchKey}&value=${searchText}`;
+    const URL = `http://localhost:8080/user/search?key=${searchKey}&value=${searchText}`;
     const res = await fetch(URL,{
       method:"GET",
       headers:{
@@ -44,6 +47,7 @@ function Search() {
         return rest;
       });
       setSearchedDetails(userDetails);
+      setIsLoading(false);
       setIsSearched(true);
       setSearchText("");
 
@@ -96,7 +100,9 @@ function Search() {
 
         {isSearched && <button onClick={handleBack}>Back</button>}
       </div>
-
+      {isSearched && isLoading && (<div>
+        <Spin size="large" fullscreen={true}></Spin>
+      </div>)}
       {isSearched && <div>
         <table border="1">
             <thead>

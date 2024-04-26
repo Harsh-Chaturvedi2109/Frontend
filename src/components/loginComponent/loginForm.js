@@ -22,7 +22,7 @@ const navigate = useNavigate();
     async function handleSubmit(e){
         e.preventDefault();
         console.log(loginForm);
-        const response = await fetch("https://backend-6tqr.onrender.com/login",{
+        const response = await fetch("http://localhost:8080/login",{
             'method':'POST',
             body:JSON.stringify(loginForm),
             headers:{
@@ -31,7 +31,7 @@ const navigate = useNavigate();
         })
 
         const data = await response.json();
-
+        console.log(data);
         if(response.ok){
             localStorage.setItem("Authorization",data.token);
             localStorage.setItem("Role",data.role);
@@ -39,7 +39,7 @@ const navigate = useNavigate();
         }
         else{
             setError(data.message);
-            console.log(error);
+            console.log("Error",data.err);
         }
     }
     function handleChange(e){

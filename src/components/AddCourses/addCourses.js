@@ -1,7 +1,8 @@
 import { useState } from "react"
 import Navbar from "../navBar/navBar";
-
+import { Spin } from "antd";
 function AddCourses(){
+
     const initialState = {
         title : "",
         courseCode : "",
@@ -10,6 +11,7 @@ function AddCourses(){
         credits:""
     }
     const [formData,setFormData] = useState(initialState);
+    const[isLoading,setIsLoading] = useState(false);
     function handleChange(e){
         setFormData({
             ...formData,
@@ -20,7 +22,8 @@ function AddCourses(){
     async function handleSubmit(e){
         e.preventDefault();
         try{
-            const res = await fetch("https://backend-6tqr.onrender.com/course/addCourse",{
+            setIsLoading(true);
+            const res = await fetch("http://localhost:8080/course/addCourse",{
                 method:"POST",
                 body:JSON.stringify(formData),
                 headers:{
@@ -34,6 +37,7 @@ function AddCourses(){
                 console.log(data.message);
                 alert('Course Added Successfully');
                 setFormData(initialState);
+                setIsLoading(false);
             }
             else{
                 alert(data.message);
@@ -50,6 +54,9 @@ function AddCourses(){
         <>
             <Navbar></Navbar>
             <h1>Add Courses</h1>
+            {isLoading && <div>
+                <Spin size="large" fullscreen={true}/>
+            </div>}
             <div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="title">Title of the Course</label>

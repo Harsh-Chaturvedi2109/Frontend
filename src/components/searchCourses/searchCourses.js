@@ -8,7 +8,7 @@ function SearchCourses(){
     async function handleSearch(e){
         e.preventDefault();
         try {
-            const response = await fetch(`https://backend-6tqr.onrender.com/user/references?query=${query}`);
+            const response = await fetch(`http://localhost:8080/user/references?query=${query}`);
             const data = await response.json();
             console.log("Data",data);
             setResults(data.result);

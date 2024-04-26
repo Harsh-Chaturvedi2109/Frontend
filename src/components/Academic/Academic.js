@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Navbar from "../navBar/navBar";
+import { Spin } from "antd"; // for loader
 import Modal from "react-modal";
 import "./Academic.css";
 import {EmailShareButton,FacebookShareButton,WhatsappShareButton,WhatsappIcon,FacebookIcon,EmailIcon} from "react-share";
@@ -10,15 +11,19 @@ function Academic(){
     const[formData,setFormData] = useState({});
     const[addedDetails,setAddedDetails] = useState(false)
     const[show,setShow] = useState(false);
+    const [isLoading,setIsLoading] = useState(false);
     const[currentPageUrl,setCurrentPageUrl] = useState(window.location.href);
     async function handleSubmit(e){
         try{
+
             e.preventDefault();
+            setIsLoading(true);
             if(show){
                 setShow(false);
+                setIsLoading(false);
                 return;
             }
-            const res = await fetch(`https://backend-6tqr.onrender.com/user/academicDetails`,{
+            const res = await fetch(`http://localhost:8080/user/academicDetails`,{
                 method:"GET",
                 headers:{
                     Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
@@ -26,11 +31,13 @@ function Academic(){
             })
             const data = await res.json()
             setUserDetails(data.user);
+            setIsLoading(false);
             setShow(true);
             console.log(userDetails);
             console.log(userDetails[0]);
             console.log(userDetails[0].academicDetails[0])
             console.log(userDetails[0].academicDetails[0].higherSecondary.percentage)
+            
         }
         catch(err){
             console.log(err);
@@ -53,7 +60,7 @@ function Academic(){
     async function handleFormSubmit(e){
         try{
                 e.preventDefault();
-            const res = await fetch("https://backend-6tqr.onrender.com/user/addAcademicDetails",{
+            const res = await fetch("http://localhost:8080/user/addAcademicDetails",{
                 method:"POST",
                 body: JSON.stringify(formData),
                 headers:{
@@ -109,7 +116,11 @@ function Academic(){
         <div className="academic">
         <Navbar></Navbar>
             <button onClick={handleSubmit}>{show ? "Hide Details" : "Get Details"}</button>
-            
+            {isLoading && (
+            <div style={{ textAlign: "center", marginTop: 50 }}>
+              <Spin size="large" fullscreen={true} color="red" />
+            </div>
+          )}
             { show && userDetails.some(user => user.academicDetails.length > 0) && <div>
                 <table border="1" style={{borderCollapse:"collapse"}}>
                     <thead>

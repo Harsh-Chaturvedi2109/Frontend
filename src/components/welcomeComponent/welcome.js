@@ -60,7 +60,7 @@ function Welcome() {
   async function handleSubmit(e) {
     e.preventDefault();
     const email = selectedUser.email;
-    const URL = `https://backend-6tqr.onrender.com/user/${email}`;
+    const URL = `http://localhost:8080/user/${email}`;
     const response = await fetch(URL, {
       method: "PATCH",
       body: JSON.stringify(selectedUser),
@@ -95,7 +95,7 @@ function Welcome() {
     close();
     setIsLoading(true);
     const response = await fetch(
-      `https://backend-6tqr.onrender.com/user/uploadProfilePic/${email}`,
+      `http://localhost:8080/user/uploadProfilePic/${email}`,
       {
         method: "POST",
         body: JSON.stringify({ image }),
@@ -130,7 +130,7 @@ function Welcome() {
   }
   async function handleDelete(close) {
     console.log(usersToDelete);
-    const URL = "https://backend-6tqr.onrender.com/user/deleteSelectedUser";
+    const URL = "http://localhost:8080/user/deleteSelectedUser";
     const response = await fetch(URL, {
       method: "DELETE",
       body: JSON.stringify(usersToDelete),
@@ -156,11 +156,14 @@ function Welcome() {
 
   async function fetchData() {
     try {
+      setIsLoading(true);
       const data = await getUser();
       if (data instanceof Error) {
         console.error("Error:", data.message);
         throw data;
       }
+
+      setIsLoading(false);
       setDetails(data);
 
       if (localStorage.getItem("Role") === "admin") {
@@ -224,7 +227,7 @@ function Welcome() {
         <div>
           {loading && (
             <div style={{ textAlign: "center", marginTop: 50 }}>
-              <Spin size="large" />
+              <Spin size="large" fullscreen={true}  />
             </div>
           )}
           <table
